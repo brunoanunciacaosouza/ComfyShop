@@ -3,10 +3,12 @@ import { useNavigation } from 'react-router-dom';
 const SubmitBtn = ({ text }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
+
+  console.log(navigation);
   return (
     <button
-      className="btn btn-primary btn-block"
       type="submit"
+      className="btn btn-primary btn-block"
       disabled={isSubmitting}
     >
       {isSubmitting ? (
@@ -20,5 +22,4 @@ const SubmitBtn = ({ text }) => {
     </button>
   );
 };
-
 export default SubmitBtn;
