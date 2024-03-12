@@ -1,12 +1,22 @@
 import { useLoaderData, Link } from 'react-router-dom';
-import { formatPrice, customFetch } from '../utils';
+import { formatPrice, customFetch} from '../utils';
 import { useState } from 'react';
 
-import { generateAmountOptions } from '../utils';
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
   return { product: response.data.data };
+};
+
+const generateAmountOptions = (number) => {
+  return Array.from({ length: number }, (_, index) => {
+    const amount = index + 1;
+    return (
+      <option key={amount} value={amount}>
+        {amount}
+      </option>
+    );
+  });
 };
 
 const SingleProduct = () => {
