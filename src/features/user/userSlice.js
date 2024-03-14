@@ -6,6 +6,10 @@ const themes = {
   dracula: 'dracula',
 };
 
+const getUserFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('user')) || null;
+};
+
 const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem('theme') || themes.winter;
   document.documentElement.setAttribute('data-theme', theme);
@@ -13,7 +17,7 @@ const getThemeFromLocalStorage = () => {
 };
 
 const initialState = {
-  user: { username: 'bruno souza' },
+  user: getUserFromLocalStorage(),
   theme: getThemeFromLocalStorage(),
 };
 
