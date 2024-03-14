@@ -13,13 +13,11 @@ const Login = () => {
           type="email"
           label="email"
           name="identifier"
-          defaultValue="test@test.com"
         />
         <FormInput
           type="password"
           label="password"
           name="password"
-          defaultValue="secret"
         />
         <div className="mt-4">
           <SubmitBtn text="login" />
