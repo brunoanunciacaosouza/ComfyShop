@@ -1,7 +1,9 @@
 import { useLoaderData, Link } from 'react-router-dom';
-import { formatPrice, customFetch} from '../utils';
+import { useDispatch } from 'react-redux';
+import { formatPrice, customFetch } from '../utils';
 import { useState } from 'react';
 
+import { addItem } from '../features/cart/cartSlice';
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -31,8 +33,21 @@ const SingleProduct = () => {
     setAmount(parseInt(e.target.value));
   };
 
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    company,
+    productColor,
+    amount,
+  };
+
+  const dispatch = useDispatch();
+
   const addToCart = () => {
-    console.log('add');
+    dispatch(addItem({product: cartProduct}))
   };
 
   return (
