@@ -37,6 +37,7 @@ export const action =
       toast.success('order placed successfully');
       return redirect('/orders');
     } catch (error) {
+      console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
         'there was an error placing your order';
