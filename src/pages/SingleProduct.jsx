@@ -5,10 +5,12 @@ import { useState } from 'react';
 
 import { addItem } from '../features/cart/cartSlice';
 
-export const loader = async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`);
-  return { product: response.data.data };
-};
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const response = await customFetch(`/products/${params.id}`);
+    return { product: response.data.data };
+  };
 
 const generateAmountOptions = (number) => {
   return Array.from({ length: number }, (_, index) => {
@@ -47,7 +49,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(addItem({product: cartProduct}))
+    dispatch(addItem({ product: cartProduct }));
   };
 
   return (
